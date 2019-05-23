@@ -3,5 +3,7 @@
 @authors
 
 Adam Ali (adaali@ucdavis.edu)
+
 Cameron Lee (cmnlee@ucdavis.edu)
+
 Emily Crane (efcrane@ucdavis.edu)
