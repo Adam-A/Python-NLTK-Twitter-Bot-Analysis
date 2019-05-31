@@ -16,4 +16,8 @@ We will then use the trained models to predict probabilities on the russian-trol
 
 (2) Our next analysis will be building concordance tabels. We will attempt to study the contexts of each words (undetermined yet). We will also tag the words from the tweets, and maybe analyze the parts of speech
 
+# Source data:
+
+https://www.kaggle.com/kapastor/democratvsrepublicantweets <-- for the collection of categorized demo/repub tweets
+https://www.kaggle.com/vikasg/russian-troll-tweets <-- for the troll tweet collection
 
