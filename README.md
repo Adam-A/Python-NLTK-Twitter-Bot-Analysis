@@ -6,4 +6,4 @@ Adam Ali (adaali@ucdavis.edu)
 
 Cameron Lee (cmnlee@ucdavis.edu)
 
-Emily Crane (efcrane@ucdavis.edu)
+Doing analysis on russian troll bot, democrat, and republican tweets
