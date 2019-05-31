@@ -4,7 +4,7 @@ Adam Ali (adaali@ucdavis.edu)
 
 Cameron Lee (cmnlee@ucdavis.edu)
 
-### Categorization (Part 1)
+### (Part 1) Categorization
 
 We will train using democratic and republican tweets, and run the probabilities on the russian-troll-tweet to determine whether the tweets are demo or repub
 
@@ -12,7 +12,7 @@ We will need to separate the data and only use the tweet contents from the CSV. 
 
 We will then use the trained models to predict probabilities on the russian-troll-tweets. 
 
-### Concordance and POS (Part 2)
+### (Part 2) Concordance and POS
 
 Our next analysis will be building concordance tabels. We will attempt to study the contexts of each words (undetermined yet). We will also tag the words from the tweets, and maybe analyze the parts of speech
 
