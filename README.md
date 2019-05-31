@@ -18,6 +18,6 @@ We will then use the trained models to predict probabilities on the russian-trol
 
 # Source data:
 
-https://www.kaggle.com/kapastor/democratvsrepublicantweets <-- for the collection of categorized demo/repub tweets
-https://www.kaggle.com/vikasg/russian-troll-tweets <-- for the troll tweet collection
+- https://www.kaggle.com/kapastor/democratvsrepublicantweets <-- for the collection of categorized democratic/republican tweets
+- https://www.kaggle.com/vikasg/russian-troll-tweets <-- for the troll tweet collection
 
