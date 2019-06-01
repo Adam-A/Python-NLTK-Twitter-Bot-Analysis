@@ -13,9 +13,11 @@ for file in IRA_files:
             if line_count == 0:
                 line_count += 1
             else:
-                file = open("datasets/test/testpayload/"+row[1], "w+")
-                file.write(row[2])
-                file.close() 
+                if row[4] == "English":
+                    print("succ")
+                    file = open("datasets/test/testpayload/"+row[1], "w+")
+                    file.write(row[2])
+                    file.close() 
         line_count += 1
         
 print("Processing completed")

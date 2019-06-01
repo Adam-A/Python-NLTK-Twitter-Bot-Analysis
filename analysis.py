@@ -25,15 +25,15 @@ pickle.dump({'dem_count': len(democrat_files),'rep_count': len(republican_files)
 print("Training completed... Running tests now")
 
 model = pickle.load(open('sentiment.nb', 'rb'))
-test_files = sorted(glob.glob('datasets/test/republican/*'))
+test_files = sorted(glob.glob('datasets/test/testpayload/*'))
 output_file = open('predictions.txt', 'w')
 
 total_fd = model['dem_fd'] + model['rep_fd']
 dem_prior = math.log(model['dem_count'] / (model['dem_count']+model['rep_count']))
 rep_prior = math.log(model['rep_count'] / (model['dem_count']+model['rep_count']))
 
-dem_count = 0
-rep_count = 0
+dem_tweets = 0
+rep_tweets = 0
 
 for fname in test_files:
     
@@ -46,15 +46,15 @@ for fname in test_files:
         p_doc_dem += math.log((model['dem_fd'][token]+1) / (model['dem_fd'].N()+total_fd.B()))
         p_doc_rep += math.log((model['rep_fd'][token]+1) / (model['rep_fd'].N()+total_fd.B()))    
     if p_doc_dem > p_doc_rep:
-        dem_count +=1
-        print(fname, 'dem', file=output_file)
+        dem_tweets += 1
+        print(fname, 'DEM', file=output_file)
     else:
-        rep_count +=1
-        print(fname, 'rep', file=output_file)
+        rep_tweets += 1
+        print(fname, 'REP', file=output_file)
     #print(fname, 'dem' if p_doc_dem > p_doc_rep else 'rep', file=output_file)
 
 output_file.close()
 
 
 print("Model tests ended... Results in predictions.txt")
-print(dem_count, "democrat tweets and", rep_count,"republican tweets predicted")
+print(dem_tweets, "Democratic tweets and", rep_tweets, "Republican tweets predicted out of", dem_tweets+rep_tweets)
