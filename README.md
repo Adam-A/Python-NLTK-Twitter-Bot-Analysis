@@ -30,6 +30,11 @@ Our next analysis will be building concordance tabels. We will attempt to study 
 
 Testing words include (but not limited to): white, we, bogus, lives, [try with more cameron pls]
 
+### Observations
+
+- It was difficult finding categorized Democrat and Republican files. This basically made or broke how many false-positives we would get. Plus, tweets having hashtags and emojis didn't help. This, along with people's tendancy for sarcasm on the web, made our lives a bit more difficult
+- Sort of the counterpoint to the first bulletpoint, we had a lot more test data than train data. In our opinion, there should be a good amount of both for correct predictions
+
 # Source data:
 
 - https://www.kaggle.com/kapastor/democratvsrepublicantweets <-- for the collection of categorized democratic/republican tweets
