@@ -2,59 +2,89 @@ import pickle
 import glob
 import nltk
 import math
+import csv
 from nltk import FreqDist
 
-democrat_files = glob.glob('datasets/train/democratic/*')
-republican_files = glob.glob('datasets/train/republican/*')
-all_neg_tokens  = []
-all_pos_tokens = []
+dem_count = 0
+rep_count = 0
+all_rep_tokens  = []
+all_dem_tokens = []
+    
+print("\n-----TRAINING WITH DEMOCRATIC AND REPUBLICAN TWEETS-----\n")
 
-print("Training model...")
+#https://realpython.com/python-csv/                                                                 
+with open('datasets/train/ExtractedTweets.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader: #party, handle, tweets row[1],2,3                                        
+        if line_count == 0:
+            line_count += 1
+        else:
+            if row[0] == "Democrat":
+                all_dem_tokens += nltk.word_tokenize(row[2])
+                dem_count += 1
+            elif row[0] == "Republican":
+                all_rep_tokens += nltk.word_tokenize(row[2])
+                rep_count += 1
+            line_count += 1
 
-#reading each file from pos folder and tokenizing its contents and appending to all_pos_tokens
-for fname in democrat_files:
-    all_pos_tokens +=  nltk.word_tokenize(open(fname,"r").read())
+print("\n-------------------TRAINING COMPLETED-------------------\n")
+print("\n-----------TESTING WITH RUSSIAN TROLL TWEETS------------\n")
 
-#reading each file from neg folder and tokenizing its contents and appending to all_neg_tokens  
-for fname in republican_files:
-    all_neg_tokens +=  nltk.word_tokenize(open(fname,"r").read())
-
-#puts number of positive samples, negative samples, freqdist for pos_tokens, and freqdist for neg_tokens into a map dumps it in a file for future use
-pickle.dump({'dem_count': len(democrat_files),'rep_count': len(republican_files),'dem_fd': nltk.FreqDist(all_pos_tokens),'rep_fd': nltk.FreqDist(all_neg_tokens)}, open('sentiment.nb', 'wb'))
-
-print("Training completed... Running tests now")
-
-model = pickle.load(open('sentiment.nb', 'rb'))
-test_files = sorted(glob.glob('datasets/test/testpayload/*'))
+dem_fd = nltk.FreqDist(all_dem_tokens)
+rep_fd = nltk.FreqDist(all_rep_tokens)
 output_file = open('predictions.txt', 'w')
 
-total_fd = model['dem_fd'] + model['rep_fd']
-dem_prior = math.log(model['dem_count'] / (model['dem_count']+model['rep_count']))
-rep_prior = math.log(model['rep_count'] / (model['dem_count']+model['rep_count']))
+total_fd = dem_fd + rep_fd
+dem_prior = math.log(dem_count / (dem_count+rep_count))
+rep_prior = math.log(rep_count / (dem_count+rep_count))
 
 dem_tweets = 0
 rep_tweets = 0
 
-for fname in test_files:
-    
-    #p_doc_pos and p_doc_neg start out containing the priors
-    p_doc_dem = dem_prior
-    p_doc_rep = rep_prior
-    
-    #then we add each logged predicition for each token
-    for token in nltk.word_tokenize(open(fname,"r").read()):
-        p_doc_dem += math.log((model['dem_fd'][token]+1) / (model['dem_fd'].N()+total_fd.B()))
-        p_doc_rep += math.log((model['rep_fd'][token]+1) / (model['rep_fd'].N()+total_fd.B()))    
-    if p_doc_dem > p_doc_rep:
-        dem_tweets += 1
-        print(fname, 'DEM', file=output_file)
-    else:
-        rep_tweets += 1
-        print(fname, 'REP', file=output_file)
-    #print(fname, 'dem' if p_doc_dem > p_doc_rep else 'rep', file=output_file)
+#need this for concordance later                                                                                 
+dem_word_list = []
+rep_word_list = []
+
+with open('datasets/test/russian-troll-tweets/tweets.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+        if line_count == 0:
+            line_count += 1
+        else:
+            temp_word_list = []
+            #p_doc_pos and p_doc_neg start out containing the priors                                        
+            p_doc_dem = dem_prior
+            p_doc_rep = rep_prior
+            for token in nltk.word_tokenize(row[7]):
+                temp_word_list.append(token)
+                p_doc_dem += math.log((dem_fd[token]+1) / (dem_fd.N()+total_fd.B()))
+                p_doc_rep += math.log((rep_fd[token]+1) / (rep_fd.N()+total_fd.B()))
+            if p_doc_dem > p_doc_rep:
+                dem_word_list += temp_word_list
+                dem_tweets += 1
+                print(row[1]+str(line_count), 'DEM', file=output_file)
+            else:
+                rep_word_list += temp_word_list
+                rep_tweets += 1
+                print(row[1]+str(line_count), 'REP', file=output_file)
+            line_count += 1
+   
 
 output_file.close()
 
-
-print("Model tests ended... Results in predictions.txt")
+print("\n----TESTING COMPLETED... RESULTS IN predictions.txt-----\n")
 print(dem_tweets, "Democratic tweets and", rep_tweets, "Republican tweets predicted out of", dem_tweets+rep_tweets)
+print("\n------------------RUNNING CONCORDANCE-------------------\n")
+
+while True:
+
+    word = input("TO EXIT, HIT ENTER. OTHERWISE, ENTER WORD FOR CONCORDANCE\n")
+    if word == '':
+        break
+    print("\nDEMOCRATIC CONCORDANCE FOR",word, "\n")
+    nltk.Text(dem_word_list).concordance(word)
+    print("\nREPUBLICAN CONCORDANCE FOR",word, "\n")
+    nltk.Text(rep_word_list).concordance(word)
+    print("\n")
