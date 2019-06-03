@@ -18,7 +18,9 @@ We will then use the trained models to predict probabilities on the russian-trol
 
 At first, we implemented it just like how we did in the first few homeworks (folder for dems and reps). After realizing we could cut testing times by a huge margin, we stopped using glob and began doing the training, testing, and later concordance, in the same analysis file.
 
-There were 124074 Democratic tweets and 79408 Republican tweets predicted out of 203482 for the smaller dataset. There were definitely some false-positives (tested it during production). 
+(2-5 minute run-time) There were 124074 Democratic tweets and 79408 Republican tweets predicted out of 203482 for the smaller dataset. There were definitely some false-positives (tested it during production). 
+
+(10-20 minute run-time) There were 22227186 Democratic tweets and 15366872 Republican tweets predicted out of 37594058. The predictions file was ~850 MBs 
 
 ### (Part 2) Concordance
 
