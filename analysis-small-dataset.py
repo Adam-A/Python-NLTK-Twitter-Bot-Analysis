@@ -1,5 +1,3 @@
-import pickle
-import glob
 import nltk
 import math
 import csv
