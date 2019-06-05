@@ -30,7 +30,7 @@ Our next analysis will be building concordance tabels. We will attempt to study 
 
 #### After Implementation
 
-Testing words include (but not limited to): white, we, bogus, lives, [try with more cameron pls]
+Testing words include (but not limited to): we, strong, vaccinations
 
 ### Observations
 
