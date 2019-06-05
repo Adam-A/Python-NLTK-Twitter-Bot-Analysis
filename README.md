@@ -30,7 +30,7 @@ Our next analysis will be building concordance tabels. We will attempt to study 
 
 #### After Implementation
 
-Testing words include (but not limited to): we, strong, vaccinations
+Testing words include (but not limited to): we, strong, vaccinations, and autism. Unfortunately, we weren't able to test POS because of time constraints.
 
 ### Observations
 
