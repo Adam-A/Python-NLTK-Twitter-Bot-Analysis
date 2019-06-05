@@ -53,7 +53,6 @@ with open('datasets/test/russian-troll-tweets/tweets.csv') as csv_file:
             line_count += 1
         else:
             temp_word_list = []
-            #p_doc_pos and p_doc_neg start out containing the priors                                        
             p_doc_dem = dem_prior
             p_doc_rep = rep_prior
             for token in nltk.word_tokenize(row[7]):
