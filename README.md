@@ -4,7 +4,7 @@ Adam Ali (adaali@ucdavis.edu)
 
 Cameron Lee (cmnlee@ucdavis.edu)
 
-TLDR: We analyzed Russia's twitter bots and one of the interesting things we found was that among other things, the bots push agendas such as the anti-vaccination movement. Please visit [this google drive folder](https://drive.google.com/drive/folders/1YdP61uRxt10GlX3WXLQ_1aiEglZ28Wve?usp=sharing) in order to download the entire tool and datasets. Instructions are present in the README of that project folder.
+**TLDR:** We analyzed Russia's twitter bots and one of the interesting things we found was that among other things, the bots push agendas such as the anti-vaccination movement. Please visit [this google drive folder](https://drive.google.com/drive/folders/1YdP61uRxt10GlX3WXLQ_1aiEglZ28Wve?usp=sharing) in order to download the entire tool and datasets. Instructions are present in the README of that project folder.
 
 ### Abstract
 
