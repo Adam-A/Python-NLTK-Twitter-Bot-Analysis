@@ -52,7 +52,7 @@ One noteworthy extension of our analysis was to perform both sentiment and conco
 
 In summation, the result of our analysis was eye opening to us. By far the most surprising thing this revealed to us was Russia’s usage of the bots to push politically related agendas across both parties. In other words, it was not just one party the twitter bots were pushing as we originally had suspected, but both. We can only conclude that the goal for these bots is to spread political polarization, disinformation, and distrust among the American political landscape in order to further Russia’s geopolitical goals as the United States’ current rival. The party’s politics do not matter: they are only a means to an end to weaken support for media and political institutions, a disturbing finding that has deep implications for both the present and future of cyber warfare.
 
-# Source data:
+## Source data:
 
 - https://www.kaggle.com/kapastor/democratvsrepublicantweets <-- for the collection of categorized democratic/republican tweets
 - https://www.kaggle.com/vikasg/russian-troll-tweets <-- for the troll tweet collection
